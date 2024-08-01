@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Cryptonly">
 
-    <Style TargetType="Button">
+    <!-- Стиль для Button -->
+    <!--<Style TargetType="Button">
         <Setter Property="Background" Value="#6200EE"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Padding" Value="10,5"/>
@@ -27,12 +28,50 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
+    <!-- Стиль для GridViewColumnHeader -->
     <Style TargetType="GridViewColumnHeader">
         <Setter Property="Background" Value="#6200EE"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Padding" Value="10,5"/>
+    </Style>
+
+     <!--Стиль для тексту TextBlock-->
+    <Style  TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+    </Style>
+    
+    <Style x:Key="Label" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#000000"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+
+    <Style x:Key="NavButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#6200EE"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                     BorderBrush="{TemplateBinding BorderBrush}"
+                     BorderThickness="{TemplateBinding BorderThickness}"
+                     CornerRadius="5"
+                     Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   RecognizesAccessKey="True"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

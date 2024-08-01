@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cryptonly"
         mc:Ignorable="d"
-        Height="450" Width="800">
+        Height="800" Width="1000">
 
     <Grid>
         <DockPanel LastChildFill="True">
             <!-- Навигационная панель -->
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#ECEFF1" Height="40">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#ECEFF1" Height="60">
                 <!-- Кнопка Cryptonly -->
-                <Button Content="Cryptonly" Click="CryptonlyButton_Click" Margin="5" Background="Transparent" BorderBrush="Transparent" Foreground="#6200EE"/>
+                <Button Content="Cryptonly" Click="CryptonlyButton_Click" Style="{StaticResource NavButton}"/>
             </StackPanel>
 
             <!-- Основное содержимое -->
