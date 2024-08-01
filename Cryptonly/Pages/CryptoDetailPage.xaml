@@ -1,0 +1,17 @@
+﻿<Page x:Class="Cryptonly.CryptoDetailPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="CryptoDetailPage">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="{Binding Name}" FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
+            <TextBlock Text="Цена:" FontWeight="Bold"/>
+            <TextBlock Text="{Binding PriceUsd, StringFormat=C}" Margin="0,0,0,10"/>
+            <TextBlock Text="Объем за 24ч:" FontWeight="Bold"/>
+            <TextBlock Text="{Binding VolumeUsd, StringFormat=C}" Margin="0,0,0,10"/>
+            <TextBlock Text="Рыночная капитализация:" FontWeight="Bold"/>
+            <TextBlock Text="{Binding MarketCapUsd, StringFormat=C}" Margin="0,0,0,10"/>
+            <!-- Добавьте другие элементы управления для отображения дополнительной информации -->
+        </StackPanel>
+    </Grid>
+</Page>
