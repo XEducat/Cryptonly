@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Globalization;
 
 namespace Cryptonly.Data
 {
@@ -18,42 +17,22 @@ namespace Cryptonly.Data
         [JsonProperty("symbol")]
         public string Symbol { get; set; }
 
-        private string priceUsd;
+        private double priceUsd;
 
         [JsonProperty("priceUsd")]
-        public string PriceUsd
+        public double PriceUsd
         {
             get => priceUsd;
-            set
-            {
-                if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var price))
-                {
-                    priceUsd = Math.Round(price, 6).ToString();
-                }
-                else
-                {
-                    priceUsd = "0.000000";
-                }
-            }
+            set => priceUsd = Math.Round(value, 5);
         }
 
-        private string volumeUsd;
+        private double volumeUsd;
 
         [JsonProperty("volumeUsd24Hr")]
-        public string VolumeUsd
+        public double VolumeUsd
         {
             get => volumeUsd;
-            set
-            {
-                if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var price))
-                {
-                    volumeUsd = Math.Round(price, 6).ToString();
-                }
-                else
-                {
-                    volumeUsd = "0.000000";
-                }
-            }
+            set => volumeUsd = Math.Round(value, 5);
         }
 
         public string DisplayName => $"{Name} ({Symbol})";

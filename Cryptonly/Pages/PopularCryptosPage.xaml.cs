@@ -19,10 +19,10 @@ namespace Cryptonly
         {
             using (HttpClient client = new HttpClient())
             {
-                var response = await client.GetStringAsync("https://api.coincap.io/v2/assets?limit=10");
-                var cryptoData = JsonConvert.DeserializeObject<List<CryptoCurrencyShort>>(response);
+                var response = await client.GetStringAsync("https://api.coincap.io/v2/assets");
+                var cryptoData = JsonConvert.DeserializeObject<CryptoInfo>(response);
 
-                cryptoListView.ItemsSource = cryptoData;
+                cryptoListView.ItemsSource = cryptoData?.Data;
             }
         }
 
