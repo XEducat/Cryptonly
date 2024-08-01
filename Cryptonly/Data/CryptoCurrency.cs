@@ -1,63 +1,97 @@
 ﻿using Newtonsoft.Json;
-using System.Globalization;
 
 namespace Cryptonly.Data
 {
     /// <summary>
-    /// Невелике представлення для моделі валюти,
-    /// створенне для оптимізації
+    /// Повне представлення для моделі валюти
     /// </summary>
+    
     public class CryptoCurrency
+    {
+        public Data Data { get; set; }
+        public long Timestamp { get; set; }
+    }
+
+    public class Data
     {
         [JsonProperty("id")]
         public string Id { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonProperty("rank")]
+        public string Rank { get; set; }
 
         [JsonProperty("symbol")]
         public string Symbol { get; set; }
 
-        private string priceUsd;
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
-        [JsonProperty("priceUsd")]
-        public string PriceUsd
+        private double supply;
+
+        [JsonProperty("supply")]
+        public double Supply
         {
-            get => priceUsd;
-            set
-            {
-                if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var price))
-                {
-                    priceUsd = Math.Round(price, 6).ToString();
-                }
-                else
-                {
-                    priceUsd = "0.000000";
-                }
-            }
+            get => supply;
+            set => supply = Math.Round(value, 5);
         }
 
-        private string volumeUsd;
+        private double? maxSupply;
+
+        [JsonProperty("maxSupply")]
+        public double? MaxSupply
+        {
+            get => maxSupply;
+            set => maxSupply = Math.Round(value ?? 0.0, 5);
+        }
+
+        private double marketCapUsd;
+
+        [JsonProperty("marketCapUsd")]
+        public double MarketCapUsd
+        {
+            get => marketCapUsd;
+            set => marketCapUsd = Math.Round(value, 5);
+        }
+
+        private double volumeUsd24Hr;
 
         [JsonProperty("volumeUsd24Hr")]
-        public string VolumeUsd
+        public double VolumeUsd24Hr
         {
-            get => volumeUsd;
-            set
-            {
-                if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var price))
-                {
-                    volumeUsd = Math.Round(price, 6).ToString();
-                }
-                else
-                {
-                    volumeUsd = "0.000000";
-                }
-            }
+            get => volumeUsd24Hr;
+            set => volumeUsd24Hr = Math.Round(value, 5);
         }
 
-        public string DisplayName => $"{Name} ({Symbol})";
+        private double priceUsd;
 
-        //public double Price => double.TryParse(PriceUsd, out var price) ? price : 0;
+        [JsonProperty("priceUsd")]
+        public double PriceUsd
+        {
+            get => priceUsd;
+            set => priceUsd = Math.Round(value, 5);
+        }
+
+        private double changePercent24Hr;
+
+        [JsonProperty("changePercent24Hr")]
+        public double ChangePercent24Hr
+        {
+            get => changePercent24Hr;
+            set => changePercent24Hr = Math.Round(value, 5);
+        }
+
+        private double vwap24Hr;
+
+        [JsonProperty("vwap24Hr")]
+        public double Vwap24Hr
+        {
+            get => vwap24Hr;
+            set => vwap24Hr = Math.Round(value, 5);
+        }
+
+        [JsonProperty("explorer")]
+        public string Explorer { get; set; }
     }
 }
+
+
