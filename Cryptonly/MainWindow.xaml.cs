@@ -26,9 +26,9 @@ namespace Cryptonly
             NavigateToPopularCryptos();
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void CryptoConverterButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown(); // Закрывает приложение
+            mainFrame.Navigate(new CryptoConverterPage());
         }
 
         private void OnThemeRadioButtonChecked(object sender, RoutedEventArgs e)
