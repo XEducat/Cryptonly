@@ -1,0 +1,87 @@
+﻿<Page x:Class="Cryptonly.PopularCryptosPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:Cryptonly"
+      xmlns:vm="clr-namespace:Cryptonly.ViewModels"
+      Title="PopularCryptosPage">
+
+    <Page.DataContext>
+        <vm:PopularCryptosViewModel/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Search Box -->
+        <Border Background="{DynamicResource NavBarBackgroundBrush}" Padding="5" Grid.Row="0">
+            <TextBox Width="720" Height="30" 
+                     FontSize="16" 
+                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="0,0,10,0"
+                     HorizontalAlignment="Left"/>
+        </Border>
+
+        <!-- Cryptocurrency List -->
+        <ListView x:Name="cryptoListView" 
+                  MouseDoubleClick="CryptoListView_MouseDoubleClick" 
+                  Grid.Row="1" 
+                  ItemsSource="{Binding Cryptos}"
+                  Background="{DynamicResource BackgroundBrush}"
+                  Foreground="{DynamicResource ForegroundBrush}">
+            <ListView.View>
+                <GridView>
+                    <!-- Column "Name" -->
+                    <GridViewColumn Width="300">
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Name"/>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DisplayName}" 
+                                           Style="{StaticResource H4}" 
+                                           Foreground="{DynamicResource GridColumnText}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!-- Column "Price" -->
+                    <GridViewColumn Width="170">
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Price"/>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding PriceUsd, StringFormat={}{0:C5}}" 
+                                           Style="{StaticResource H4}"
+                                           Foreground="Green"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!-- Column "Volume" -->
+                    <GridViewColumn Width="250">
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Volume (24hr)"/>
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding VolumeUsd, StringFormat={}{0:C5}}" 
+                                           Style="{StaticResource H4}" 
+                                           Foreground="Blue"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>
