@@ -10,6 +10,7 @@
     <sys:String x:Key="PriceText">Ціна</sys:String>
     <sys:String x:Key="Volume24hText">Об'єм (24год.)</sys:String>
 
+    <sys:String x:Key="GoToPageButtonText">Перейти</sys:String>
     <sys:String x:Key="MarketCapitalizationText">Ринкова капіталізація</sys:String>
     <sys:String x:Key="SalesText">Продаж</sys:String>
     <sys:String x:Key="PurchaseText">Купівля</sys:String>

@@ -17,6 +17,9 @@ namespace Cryptonly.Data
         [JsonProperty("symbol")]
         public string Symbol { get; set; }
 
+        [JsonProperty("explorer")]
+        public string Explorer { get; set; }
+
         private decimal priceUsd;
 
         [JsonProperty("priceUsd")]

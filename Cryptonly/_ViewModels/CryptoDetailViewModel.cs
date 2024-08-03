@@ -1,11 +1,12 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+using System.Diagnostics;
+using System.Globalization;
+using System.Windows.Input;
 using Cryptonly.Data;
 using Cryptonly.Services;
 using OxyPlot;
-using OxyPlot.Series;
 using OxyPlot.Axes;
-using System.Globalization;
+using OxyPlot.Series;
 
 namespace Cryptonly.ViewModels
 {
@@ -22,6 +23,7 @@ namespace Cryptonly.ViewModels
         private ObservableCollection<string> _sellMarkets;
         private ObservableCollection<string> _buyMarkets;
         private string _selectedInterval;
+        private ICommand _navigateCommand;
 
         public string Name
         {
@@ -65,6 +67,16 @@ namespace Cryptonly.ViewModels
             set => SetProperty(ref _buyMarkets, value);
         }
 
+        public ICommand NavigateCommand
+        {
+            get
+            {
+                return _navigateCommand ??= new RelayCommand(
+                    ExecuteNavigateCommand,
+                    CanExecuteNavigateCommand);
+            }
+        }
+
         public string SelectedInterval
         {
             get => _selectedInterval;
@@ -72,7 +84,6 @@ namespace Cryptonly.ViewModels
             {
                 if (SetProperty(ref _selectedInterval, value))
                 {
-                    // Load a new chart based on the new interval
                     LoadPriceDiagramAsync(_selectedInterval);
                 }
             }
@@ -187,6 +198,34 @@ namespace Cryptonly.ViewModels
                     BuyMarkets.Add(item);
                 }
             }
+        }
+
+        private void ExecuteNavigateCommand(object parameter)
+        {
+            if (!string.IsNullOrEmpty(_selectedCrypto.Explorer))
+            {
+                try
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = _selectedCrypto.Explorer,
+                        UseShellExecute = true
+                    });
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Помилка при відкритті URL: {ex.Message}");
+                }
+            }
+            else
+            {
+                Debug.WriteLine("URL-адреса не задана для переходу.");
+            }
+        }
+
+        private bool CanExecuteNavigateCommand(object parameter)
+        {
+            return !string.IsNullOrEmpty(_selectedCrypto.Explorer);
         }
     }
 }

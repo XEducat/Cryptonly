@@ -11,16 +11,29 @@
 
         <ScrollViewer Grid.Column="0" Margin="10" VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <StackPanel Margin="0,0,0,10">
-                    <TextBlock Text="{Binding Name}" Margin="0,0,0,10" Style="{StaticResource H3}"/>
-                    <TextBlock Text="{DynamicResource PriceText}" Style="{StaticResource BoldLabel}"/>
-                    <TextBlock Text="{Binding PriceUsd, StringFormat={}{0:C5}}" Style="{StaticResource Label}" Margin="0,0,0,10"/>
-                    <TextBlock Text="{DynamicResource Volume24hText}" Style="{StaticResource BoldLabel}"/>
-                    <TextBlock Text="{Binding VolumeUsd24Hr, StringFormat={}{0:C5}}" Style="{StaticResource Label}" Margin="0,0,0,10"/>
-                    <TextBlock Text="{DynamicResource MarketCapitalizationText}" Style="{StaticResource BoldLabel}"/>
-                    <TextBlock Text="{Binding MarketCapUsd, StringFormat={}{0:C5}}" Style="{StaticResource Label}" Margin="0,0,0,10"/>
+                <!-- Панель з назвою криптовалюти та кнопкою переходу на її сторінку -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="{Binding Name}" Margin="0,0,10,0" Style="{StaticResource H3}" VerticalAlignment="Center"/>
+                    <Button Content="{DynamicResource GoToPageButtonText}" 
+                            Command="{Binding NavigateCommand}" 
+                            Style="{StaticResource RoundedButtonStyle}" 
+                            Margin="0,0,10,0"
+                            MinHeight="35" MinWidth="85"/>
                 </StackPanel>
 
+                <!-- Ціна -->
+                <TextBlock Text="{DynamicResource PriceText}" Style="{StaticResource BoldLabel}"/>
+                <TextBlock Text="{Binding PriceUsd, StringFormat={}{0:C5}}" Style="{StaticResource Label}" Margin="0,0,0,10"/>
+
+                <!-- Об'єм 24 години -->
+                <TextBlock Text="{DynamicResource Volume24hText}" Style="{StaticResource BoldLabel}"/>
+                <TextBlock Text="{Binding VolumeUsd24Hr, StringFormat={}{0:C5}}" Style="{StaticResource Label}" Margin="0,0,0,10"/>
+
+                <!-- Ринкова капіталізація -->
+                <TextBlock Text="{DynamicResource MarketCapitalizationText}" Style="{StaticResource BoldLabel}"/>
+                <TextBlock Text="{Binding MarketCapUsd, StringFormat={}{0:C5}}" Style="{StaticResource Label}" Margin="0,0,0,10"/>
+
+                <!-- Інформація про ринки -->
                 <Grid Margin="0,0,0,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
