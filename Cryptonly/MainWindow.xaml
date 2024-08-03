@@ -22,9 +22,13 @@
         <!-- Панель навігації (права частина NavBar) -->
         <Border Background="{DynamicResource NavBarBackgroundBrush}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal" Height="60" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <!-- Кнопка для переходу в Конвертер криптовалют -->
+                <Button Click="CryptoConverterButton_Click" Margin="10" Style="{DynamicResource RoundedButtonStyle}">
                     <Image Source="Resources/cryptoConvertor.ico" Width="32" Height="32" Margin="5,0,5,0"/>
                 </Button>
 
+                <StackPanel Orientation="Vertical" Margin="10">
+                    <RadioButton Content="Light"
                                  FontSize="14"
                                  Foreground="{DynamicResource ForegroundBrush}"
                                  IsChecked="{Binding IsLightTheme, Mode=TwoWay}"
