@@ -1,7 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using Cryptonly.Data;
 using Cryptonly.Services;
 using OxyPlot;
@@ -80,8 +78,6 @@ namespace Cryptonly.ViewModels
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public CryptoDetailViewModel(CryptoCurrencyShort selectedCrypto)
         {
             _selectedCrypto = selectedCrypto;
@@ -115,7 +111,6 @@ namespace Cryptonly.ViewModels
             {
                 var lineSeries = new LineSeries
                 {
-                    Title = "Ціна",
                     Color = OxyColor.Parse("#6200EE"),
                     StrokeThickness = 2,
                     MarkerSize = 4,
@@ -130,7 +125,7 @@ namespace Cryptonly.ViewModels
 
                 var plotModel = new PlotModel
                 {
-                    Title = "Аналіз ціни",
+                    Title = LocalizationHelper.GetValue("PriceDiagramTitle"),
                     Background = OxyColor.FromArgb(0, 255, 255, 255),
                     TextColor = OxyColor.Parse("#000000")
                 };
@@ -140,13 +135,13 @@ namespace Cryptonly.ViewModels
                 {
                     Position = AxisPosition.Bottom,
                     StringFormat = "dd/MM/yyyy",
-                    Title = "Дата"
+                    Title = LocalizationHelper.GetValue("DateAxisTitle")
                 });
 
                 plotModel.Axes.Add(new LinearAxis
                 {
                     Position = AxisPosition.Left,
-                    Title = "Ціна (USD)",
+                    Title = LocalizationHelper.GetValue("PriceAxisTitle"),
                     Minimum = 0
                 });
 

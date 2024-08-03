@@ -13,11 +13,11 @@
             <StackPanel>
                 <StackPanel Margin="0,0,0,10">
                     <TextBlock Text="{Binding Name}" Margin="0,0,0,10" Style="{StaticResource H3}"/>
-                    <TextBlock Text="Ціна:" Style="{StaticResource BoldLabel}"/>
+                    <TextBlock Text="{DynamicResource PriceText}" Style="{StaticResource BoldLabel}"/>
                     <TextBlock Text="{Binding PriceUsd, StringFormat={}{0:C5}}" Style="{StaticResource Label}" Margin="0,0,0,10"/>
-                    <TextBlock Text="Об'єм за 24год.:" Style="{StaticResource BoldLabel}"/>
+                    <TextBlock Text="{DynamicResource Volume24hText}" Style="{StaticResource BoldLabel}"/>
                     <TextBlock Text="{Binding VolumeUsd24Hr, StringFormat={}{0:C5}}" Style="{StaticResource Label}" Margin="0,0,0,10"/>
-                    <TextBlock Text="Ринкова капіталізація:" Style="{StaticResource BoldLabel}"/>
+                    <TextBlock Text="{DynamicResource MarketCapitalizationText}" Style="{StaticResource BoldLabel}"/>
                     <TextBlock Text="{Binding MarketCapUsd, StringFormat={}{0:C5}}" Style="{StaticResource Label}" Margin="0,0,0,10"/>
                 </StackPanel>
 
@@ -28,7 +28,7 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                        <TextBlock Text="Продаж" FontWeight="Bold" Margin="0,0,0,10" Style="{StaticResource H3}"/>
+                        <TextBlock Text="{DynamicResource SalesText}" FontWeight="Bold" Margin="0,0,0,10" Style="{StaticResource H3}"/>
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <ItemsControl ItemsSource="{Binding SellMarkets}">
                                 <ItemsControl.ItemTemplate>
@@ -41,7 +41,7 @@
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                        <TextBlock Text="Купівля" FontWeight="Bold" Margin="0,0,0,10" Style="{StaticResource H3}"/>
+                        <TextBlock Text="{DynamicResource PurchaseText}" FontWeight="Bold" Margin="0,0,0,10" Style="{StaticResource H3}"/>
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <ItemsControl ItemsSource="{Binding BuyMarkets}">
                                 <ItemsControl.ItemTemplate>
@@ -67,12 +67,12 @@
                       SelectedValuePath="Tag"
                       Width="200"
                       Margin="0,0,0,10">
-                <ComboBoxItem Content="5 днів" Tag="m5"/>
-                <ComboBoxItem Content="1 неділя" Tag="m15"/>
-                <ComboBoxItem Content="2 неділі" Tag="m30"/>
-                <ComboBoxItem Content="1 місяць" Tag="h1"/>
-                <ComboBoxItem Content="2 місяці" Tag="h2"/>
-                <ComboBoxItem Content="1 рік" Tag="d1"/>
+                <ComboBoxItem Content="{DynamicResource Interval5Days}" Tag="m5"/>
+                <ComboBoxItem Content="{DynamicResource Interval1Week}" Tag="m15"/>
+                <ComboBoxItem Content="{DynamicResource Interval2Weeks}" Tag="m30"/>
+                <ComboBoxItem Content="{DynamicResource Interval1Month}" Tag="h1"/>
+                <ComboBoxItem Content="{DynamicResource Interval2Months}" Tag="h2"/>
+                <ComboBoxItem Content="{DynamicResource Interval1Year}" Tag="d1"/>
             </ComboBox>
 
 

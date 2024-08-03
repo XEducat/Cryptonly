@@ -37,7 +37,7 @@
                     <GridViewColumn Width="300">
                         <GridViewColumn.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="Name"/>
+                                <TextBlock Text="{DynamicResource CurrencyText}"/>
                             </DataTemplate>
                         </GridViewColumn.HeaderTemplate>
                         <GridViewColumn.CellTemplate>
@@ -53,7 +53,7 @@
                     <GridViewColumn Width="170">
                         <GridViewColumn.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="Price"/>
+                                <TextBlock Text="{DynamicResource PriceText}"/>
                             </DataTemplate>
                         </GridViewColumn.HeaderTemplate>
                         <GridViewColumn.CellTemplate>
@@ -69,7 +69,7 @@
                     <GridViewColumn Width="250">
                         <GridViewColumn.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="Volume (24hr)"/>
+                                <TextBlock Text="{DynamicResource Volume24hText}"/>
                             </DataTemplate>
                         </GridViewColumn.HeaderTemplate>
                         <GridViewColumn.CellTemplate>

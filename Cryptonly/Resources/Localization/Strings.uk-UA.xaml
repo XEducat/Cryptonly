@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="LightTheme">Світла</sys:String>
+    <sys:String x:Key="DarkTheme">Темна</sys:String>
+    <sys:String x:Key="UkrainianLanguageText">Українська</sys:String>
+    <sys:String x:Key="EnglishLanguageText">Англійська</sys:String>
+    
+    <sys:String x:Key="CurrencyText">Валюта</sys:String>
+    <sys:String x:Key="PriceText">Ціна</sys:String>
+    <sys:String x:Key="Volume24hText">Об'єм (24год.)</sys:String>
+
+    <sys:String x:Key="MarketCapitalizationText">Ринкова капіталізація</sys:String>
+    <sys:String x:Key="SalesText">Продаж</sys:String>
+    <sys:String x:Key="PurchaseText">Купівля</sys:String>
+    <sys:String x:Key="DigramLabelText">Purchase</sys:String>
+    <sys:String x:Key="Interval5Days">5 днів</sys:String>
+    <sys:String x:Key="Interval1Week">1 неділя</sys:String>
+    <sys:String x:Key="Interval2Weeks">2 неділі</sys:String>
+    <sys:String x:Key="Interval1Month">1 місяць</sys:String>
+    <sys:String x:Key="Interval2Months">2 місяці</sys:String>
+    <sys:String x:Key="Interval1Year">1 рік</sys:String>
+    <sys:String x:Key="PriceDiagramTitle">Аналіз ціни</sys:String>
+    <sys:String x:Key="DateAxisTitle">Дата</sys:String>
+    <sys:String x:Key="PriceAxisTitle">Ціна (USD)</sys:String>
+
+    <sys:String x:Key="ConverterTitle">Конвертер криптовалют</sys:String>
+    <sys:String x:Key="InTitle">в</sys:String>
+    <sys:String x:Key="ConvertButtonTitle">Конвертувати</sys:String>
+    <sys:String x:Key="NoFromCryptoSelected">Не обрана валюта з якої потрібно переводити</sys:String>
+    <sys:String x:Key="NoToCryptoSelected">Не обрана в яку валюту переводити</sys:String>
+    <sys:String x:Key="EnterAmount">Введіть кількість валюти</sys:String>
+</ResourceDictionary>

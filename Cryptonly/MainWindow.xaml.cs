@@ -1,7 +1,6 @@
 ﻿using Cryptonly.Views;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 
 namespace Cryptonly
 {
@@ -34,11 +33,34 @@ namespace Cryptonly
         private void OnThemeRadioButtonChecked(object sender, RoutedEventArgs e)
         {
             var radioButton = sender as RadioButton;
-
             if (radioButton != null)
             {
-                var theme = radioButton.Content.ToString().Contains("Light") ? "Light" : "Dark";
-                (Application.Current as App)?.SwitchTheme(theme);
+                var resourceKey = radioButton.Content.ToString();
+                if (resourceKey == FindResource("LightTheme").ToString())
+                {
+                    (Application.Current as App)?.SwitchTheme("Light");
+                }
+                else if (resourceKey == FindResource("DarkTheme").ToString())
+                {
+                    (Application.Current as App)?.SwitchTheme("Dark");
+                }
+            }
+        }
+
+        private void OnLanguageRadioButtonChecked(object sender, RoutedEventArgs e)
+        {
+            var radioButton = sender as RadioButton;
+            if (radioButton != null)
+            {
+                var languageKey = radioButton.Content.ToString();
+                if (languageKey == FindResource("EnglishLanguageText").ToString())
+                {
+                    (Application.Current as App)?.SetLanguage("en-US");
+                }
+                else if (languageKey == FindResource("UkrainianLanguageText").ToString())
+                {
+                    (Application.Current as App)?.SetLanguage("uk-UA");
+                }
             }
         }
     }

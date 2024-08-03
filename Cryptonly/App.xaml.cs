@@ -1,6 +1,4 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Cryptonly
 {
@@ -10,32 +8,65 @@ namespace Cryptonly
     public partial class App : Application
     {
         private string currentTheme;
+        private static readonly Dictionary<string, Uri> Themes = new Dictionary<string, Uri>
+        {
+            { "Dark", new Uri("Themes/DarkTheme.xaml", UriKind.Relative) },
+            { "Light", new Uri("Themes/LightTheme.xaml", UriKind.Relative) }
+        };
 
+        private static readonly Dictionary<string, Uri> Languages = new Dictionary<string, Uri>
+        {
+            { "uk-UA", new Uri("Resources/Localization/Strings.uk-UA.xaml", UriKind.Relative) },
+            { "en-US", new Uri("Resources/Localization/Strings.en-US.xaml", UriKind.Relative) }
+        };
+
+        /// <summary>
+        /// Switches the application theme to the specified one.
+        /// </summary>
+        /// <param name="theme">The name of the theme to activate.</param>
         public void SwitchTheme(string theme)
         {
             if (currentTheme == theme) return;
 
-            // Update the current theme
             currentTheme = theme;
-            Current.Resources.MergedDictionaries.Clear();
-
-            ResourceDictionary newTheme = new ResourceDictionary();
-            switch (theme)
+            if (Themes.TryGetValue(theme, out var themeUri))
             {
-                case "Dark":
-                    newTheme.Source = new Uri("/Cryptonly;component/Themes/DarkTheme.xaml", UriKind.Relative);
-                    break;
-                case "Light":
-                    newTheme.Source = new Uri("/Cryptonly;component/Themes/LightTheme.xaml", UriKind.Relative);
-                    break;
-                default:
-                    newTheme.Source = new Uri("/Cryptonly;component/Themes/LightTheme.xaml", UriKind.Relative); // default theme
-                    break;
+                UpdateResourceDictionary(themeUri, "Themes/");
             }
+        }
 
-            // Apply the new theme
-            Current.Resources.MergedDictionaries.Add(newTheme);
+        /// <summary>
+        /// Sets the localization language for the application.
+        /// </summary>
+        /// <param name="cultureCode">Culture code to select the localization (for example, "uk-UA" for Ukrainian).</param>
+        public void SetLanguage(string cultureCode)
+        {
+            if (Languages.TryGetValue(cultureCode, out var languageUri))
+            {
+                UpdateResourceDictionary(languageUri, "Resources/Localization/");
+            }
+        }
+
+        // Updates the resource dictionary, replacing old dictionaries with new ones.
+        private void UpdateResourceDictionary(Uri newUri, string searchTerm)
+        {
+            RemoveResourceDictionariesContaining(searchTerm);
+            var newDictionary = new ResourceDictionary { Source = newUri };
+            Current.Resources.MergedDictionaries.Add(newDictionary);
+        }
+
+        // Removes resource dictionaries containing the specified search term in their URI.
+        private void RemoveResourceDictionariesContaining(string searchTerm)
+        {
+            for (int i = 0; i < Current.Resources.MergedDictionaries.Count; i++)
+            {
+                var dictionary = Current.Resources.MergedDictionaries[i];
+                if (dictionary.Source != null && dictionary.Source.OriginalString.Contains(searchTerm))
+                {
+                    Current.Resources.MergedDictionaries.Remove(dictionary);
+                    i--;
+                }
+            }
         }
     }
-
 }

@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="LightTheme">Light</sys:String>
+    <sys:String x:Key="DarkTheme">Dark</sys:String>
+    <sys:String x:Key="UkrainianLanguageText">Ukranian</sys:String>
+    <sys:String x:Key="EnglishLanguageText">English</sys:String>
+
+    <sys:String x:Key="CurrencyText">Currency</sys:String>
+    <sys:String x:Key="PriceText">Price</sys:String>
+    <sys:String x:Key="Volume24hText">Volume (24hr.)</sys:String>
+
+    <sys:String x:Key="MarketCapitalizationText">Market capitalization</sys:String>
+    <sys:String x:Key="SalesText">Sales</sys:String>
+    <sys:String x:Key="PurchaseText">Purchase</sys:String>
+    <sys:String x:Key="Interval5Days">5 days</sys:String>
+    <sys:String x:Key="Interval1Week">1 week</sys:String>
+    <sys:String x:Key="Interval2Weeks">2 weeks</sys:String>
+    <sys:String x:Key="Interval1Month">1 month</sys:String>
+    <sys:String x:Key="Interval2Months">2 months</sys:String>
+    <sys:String x:Key="Interval1Year">1 year</sys:String>
+    <sys:String x:Key="PriceDiagramTitle">Price Analysis</sys:String>
+    <sys:String x:Key="DateAxisTitle">Date</sys:String>
+    <sys:String x:Key="PriceAxisTitle">Price (USD)</sys:String>
+
+    <sys:String x:Key="ConverterTitle">Cryptocurrency converter</sys:String>
+    <sys:String x:Key="InTitle">in</sys:String>
+    <sys:String x:Key="ConvertButtonTitle">Convert</sys:String>
+    <sys:String x:Key="NoFromCryptoSelected">Currency not selected from which to convert</sys:String>
+    <sys:String x:Key="NoToCryptoSelected">The currency to be converted is not selected</sys:String>
+    <sys:String x:Key="EnterAmount">Enter amount of currency</sys:String>
+</ResourceDictionary>

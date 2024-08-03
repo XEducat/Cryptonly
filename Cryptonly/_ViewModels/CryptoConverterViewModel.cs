@@ -9,13 +9,15 @@ namespace Cryptonly.ViewModels
 {
     public class CryptoConverterViewModel : BaseViewModel
     {
+        public ObservableCollection<CryptoCurrencyShort> Cryptos { get; set; }
+        public ICommand ConvertCommand { get; }
+
         private readonly CoinCapRepository _repository;
         private CryptoCurrencyShort _selectedFromCrypto;
         private CryptoCurrencyShort _selectedToCrypto;
         private decimal _amount;
         private string _result;
 
-        public ObservableCollection<CryptoCurrencyShort> Cryptos { get; set; }
         public decimal Amount
         {
             get => _amount;
@@ -36,7 +38,7 @@ namespace Cryptonly.ViewModels
             get => _result;
             set { SetProperty(ref _result, value); }
         }
-        public ICommand ConvertCommand { get; }
+
 
         public CryptoConverterViewModel()
         {
@@ -66,13 +68,13 @@ namespace Cryptonly.ViewModels
         {
             if (SelectedFromCrypto == null)
             {
-                Result = "Не обрана валюта з якої потрібно переводити";
+                Result = LocalizationHelper.GetValue("NoFromCryptoSelected");
                 return;
             }
 
-            if (SelectedToCrypto == null) 
+            if (SelectedToCrypto == null)
             {
-                Result = "Не обрана в яку валюту переводити";
+                Result = LocalizationHelper.GetValue("NoToCryptoSelected");
                 return;
             }
 
@@ -86,7 +88,7 @@ namespace Cryptonly.ViewModels
             }
             else
             {
-                Result = "Введіть кількість валюти";
+                Result = LocalizationHelper.GetValue("EnterAmount");
             }
         }
 

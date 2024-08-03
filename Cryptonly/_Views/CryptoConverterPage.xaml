@@ -17,7 +17,7 @@
         <!-- Основной контейнер для центрирования содержимого -->
         <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="Конвертер криптовалют" FontSize="24" Margin="0,0,0,10" HorizontalAlignment="Center"/>
+                <TextBlock Text="{DynamicResource ConverterTitle}" FontSize="24" Margin="0,0,0,10" HorizontalAlignment="Center"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
                     <TextBox Width="150" 
                              Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}" 
@@ -33,7 +33,8 @@
                               Width="150"
                               FontSize="16"
                               VerticalAlignment="Center"/>
-                    <TextBlock Text=" в " 
+                    <TextBlock Text="{DynamicResource InTitle}"
+                               Margin="5"
                                FontSize="16"
                                VerticalAlignment="Center"/>
                     <ComboBox ItemsSource="{Binding Cryptos}" 
@@ -42,7 +43,7 @@
                               Width="150"
                               FontSize="16"
                               VerticalAlignment="Center"/>
-                    <Button Content="Конвертировать" 
+                    <Button Content="{DynamicResource ConvertButtonTitle}"
                             Command="{Binding ConvertCommand}" 
                             Width="140" 
                             Height="40" 

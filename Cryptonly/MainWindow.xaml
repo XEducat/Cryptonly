@@ -28,21 +28,35 @@
                 </Button>
 
                 <StackPanel Orientation="Vertical" Margin="10">
-                    <RadioButton Content="Light"
+                    <RadioButton Content="{DynamicResource LightTheme}"
                                  FontSize="14"
                                  Foreground="{DynamicResource ForegroundBrush}"
-                                 IsChecked="{Binding IsLightTheme, Mode=TwoWay}"
+                                 GroupName="Theme"
                                  Checked="OnThemeRadioButtonChecked"/>
 
-                    <RadioButton Content="Dark"
+                    <RadioButton Content="{DynamicResource DarkTheme}"
                                  FontSize="14"
                                  Foreground="{DynamicResource ForegroundBrush}"
-                                 IsChecked="{Binding IsDarkTheme, Mode=TwoWay}"
+                                 GroupName="Theme"
                                  Checked="OnThemeRadioButtonChecked"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="10">
+                    <RadioButton Content="{DynamicResource UkrainianLanguageText}"
+                                 FontSize="14"
+                                 Foreground="{DynamicResource ForegroundBrush}"
+                                 GroupName="Language"
+                                 Checked="OnLanguageRadioButtonChecked"/>
+
+                    <RadioButton Content="{DynamicResource EnglishLanguageText}"
+                                 FontSize="14"
+                                 Foreground="{DynamicResource ForegroundBrush}"
+                                 GroupName="Language"
+                                 Checked="OnLanguageRadioButtonChecked"/>
                 </StackPanel>
             </StackPanel>
         </Border>
-        
+
         <!-- Кнопка головного меню (ліва частина NavBar) -->
         <Button Content="Cryptonly" Click="CryptonlyButton_Click" Style="{DynamicResource NavButton}" Height="60" Width="150" Grid.Row="0" Grid.Column="0"/>
 

@@ -5,8 +5,10 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <!-- Слияние словарей ресурсов -->
+            <!-- Злиття словника ресурсів -->
             <ResourceDictionary.MergedDictionaries>
+                <!-- Підключення ресурсного словника за замовченням -->
+                <ResourceDictionary Source="Resources/Localization/Strings.uk-UA.xaml"/>
                 <ResourceDictionary Source="Themes/LightTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
