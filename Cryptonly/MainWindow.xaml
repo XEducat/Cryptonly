@@ -5,21 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cryptonly"
         mc:Ignorable="d"
-        Height="800" Width="1000">
+        Height="800" Width="1300"
+        Background="{DynamicResource BackgroundBrush}" 
+        Foreground="{DynamicResource ForegroundBrush}">
 
     <Grid>
-        <DockPanel LastChildFill="True">
-            <!-- Навигационная панель -->
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#ECEFF1" Height="60">
-                <!-- Кнопка Cryptonly -->
-                <Button Content="Cryptonly" Click="CryptonlyButton_Click" Style="{StaticResource NavButton}"/>
-            </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-            <!-- Основное содержимое -->
-            <Grid Background="#FFFFFF">
-                <!-- Frame для отображения страниц -->
-                <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" />
-            </Grid>
-        </DockPanel>
+        <!-- Панель навігації (права частина NavBar) -->
+        <Border Background="{DynamicResource NavBarBackgroundBrush}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal" Height="60" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <Image Source="Resources/cryptoConvertor.ico" Width="32" Height="32" Margin="5,0,5,0"/>
+                </Button>
+
+                                 FontSize="14"
+                                 Foreground="{DynamicResource ForegroundBrush}"
+                                 IsChecked="{Binding IsLightTheme, Mode=TwoWay}"
+                                 Checked="OnThemeRadioButtonChecked"/>
+
+                    <RadioButton Content="Dark"
+                                 FontSize="14"
+                                 Foreground="{DynamicResource ForegroundBrush}"
+                                 IsChecked="{Binding IsDarkTheme, Mode=TwoWay}"
+                                 Checked="OnThemeRadioButtonChecked"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        
+        <!-- Кнопка головного меню (ліва частина NavBar) -->
+        <Button Content="Cryptonly" Click="CryptonlyButton_Click" Style="{DynamicResource NavButton}" Height="60" Width="150" Grid.Row="0" Grid.Column="0"/>
+
+        <!-- Основний контент -->
+        <Grid Background="{DynamicResource BackgroundBrush}" Grid.Row="1" Grid.ColumnSpan="2">
+            <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden"/>
+        </Grid>
     </Grid>
 </Window>
