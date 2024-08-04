@@ -8,40 +8,37 @@
       mc:Ignorable="d"
       Title="SettingsPage">
 
-    <Page.DataContext>
-        <vm:SettingsViewModel />
-    </Page.DataContext>
-
     <Grid Background="{DynamicResource BackgroundBrush}">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Настройки" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+            <TextBlock Text="{DynamicResource SettingsHeader}" Margin="0,0,0,20" HorizontalAlignment="Center" Style="{StaticResource H2}"/>
 
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Тема:" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                <RadioButton Content="{DynamicResource LightTheme}"
-                             FontSize="14"
-                             Foreground="{DynamicResource ForegroundBrush}"
-                             GroupName="Theme"
-                             IsChecked="{Binding IsLightTheme}"/>
-                <RadioButton Content="{DynamicResource DarkTheme}"
-                             FontSize="14"
-                             Foreground="{DynamicResource ForegroundBrush}"
-                             GroupName="Theme"
-                             IsChecked="{Binding IsDarkTheme}"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Язык:" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                <RadioButton Content="{DynamicResource UkrainianLanguageText}"
-                             FontSize="14"
-                             Foreground="{DynamicResource ForegroundBrush}"
-                             GroupName="Language"
-                             IsChecked="{Binding IsUkrainianLanguage}"/>
-                <RadioButton Content="{DynamicResource EnglishLanguageText}"
-                             FontSize="14"
-                             Foreground="{DynamicResource ForegroundBrush}"
-                             GroupName="Language"
-                             IsChecked="{Binding IsEnglishLanguage}"/>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" Margin="0,0,10,10">
+                    <TextBlock Text="{DynamicResource ThemeHeader}" Style="{StaticResource Label}" HorizontalAlignment="Center" Margin="5,0,0,10"/>
+                    <RadioButton Content="{DynamicResource LightTheme}"
+                                 FontSize="14"
+                                 Foreground="{DynamicResource ForegroundBrush}"
+                                 GroupName="Theme"
+                                 IsChecked="{Binding IsLightTheme}"
+                                 Style="{StaticResource CustomRadioButtonStyle}"/>
+                    <RadioButton Content="{DynamicResource DarkTheme}"
+                                 FontSize="14"
+                                 Foreground="{DynamicResource ForegroundBrush}"
+                                 GroupName="Theme"
+                                 IsChecked="{Binding IsDarkTheme}"
+                                 Style="{StaticResource CustomRadioButtonStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                    <TextBlock Text="{DynamicResource LanguageHeader}" Style="{StaticResource Label}" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+                    <ComboBox 
+                        ItemsSource="{Binding Languages}"
+                        SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+                        Margin="10"
+                        Width="150"
+                        Height="35"
+                        DisplayMemberPath="LocalizedName"
+                        SelectedValuePath="Code"/>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </Grid>

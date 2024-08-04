@@ -5,10 +5,6 @@
       xmlns:vm="clr-namespace:Cryptonly.ViewModels"
       Title="PopularCryptosPage">
 
-    <Page.DataContext>
-        <vm:PopularCryptosViewModel/>
-    </Page.DataContext>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -43,7 +39,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding DisplayName}" 
-                                           Style="{StaticResource H4}" 
+                                           Style="{StaticResource ColumnText}" 
                                            Foreground="{DynamicResource GridColumnText}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -59,7 +55,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding PriceUsd, StringFormat={}{0:C5}}" 
-                                           Style="{StaticResource H4}"
+                                           Style="{StaticResource ColumnText}"
                                            Foreground="Green"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -75,7 +71,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding VolumeUsd, StringFormat={}{0:C5}}" 
-                                           Style="{StaticResource H4}" 
+                                           Style="{StaticResource ColumnText}" 
                                            Foreground="Blue"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
