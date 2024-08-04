@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using Newtonsoft.Json;
+using System.IO;
+using System.Windows;
 
 namespace Cryptonly
 {
@@ -7,7 +9,8 @@ namespace Cryptonly
     /// </summary>
     public partial class App : Application
     {
-        private string currentTheme;
+        public static UserSettings Settings { get; private set; } = new UserSettings();
+
         private static readonly Dictionary<string, Uri> Themes = new Dictionary<string, Uri>
         {
             { "Dark", new Uri("Themes/DarkTheme.xaml", UriKind.Relative) },
@@ -20,17 +23,62 @@ namespace Cryptonly
             { "en-US", new Uri("Resources/Localization/Strings.en-US.xaml", UriKind.Relative) }
         };
 
+        
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            LoadSettings();
+        }
+
+        // Loads user settings from a JSON file and applies them,
+        // sets default settings if the settings does not exist.
+        private void LoadSettings()
+        {
+            // Formation of the full path to the settings file
+            string basePath = AppDomain.CurrentDomain.BaseDirectory.Replace("bin\\Debug\\net8.0-windows\\", "");
+            string settingsFilePath = Path.Combine(basePath, "UserConfig.json");
+
+            if (File.Exists(settingsFilePath))
+            {
+                var settingsConfig = File.ReadAllText(settingsFilePath);
+                var settings = JsonConvert.DeserializeObject<UserSettings>(settingsConfig);
+
+                if (settings != null)
+                {
+                    SwitchTheme(settings.CurrentTheme);
+                    SetLanguage(settings.CurrentLanguage);
+                    Settings = settings;
+                    return;
+                }
+            }
+
+            // Set default settings
+            SwitchTheme("Light");
+            SetLanguage("en-US");
+        }
+
+        /// <summary>
+        /// Saves the current user settings to a JSON file.
+        /// </summary>
+        public void SaveSettings()
+        {
+            string basePath = AppDomain.CurrentDomain.BaseDirectory.Replace("bin\\Debug\\net8.0-windows\\", "");
+            string settingsFilePath = Path.Combine(basePath, "UserConfig.json");
+
+            File.WriteAllText(settingsFilePath, JsonConvert.SerializeObject(Settings, Formatting.Indented));
+        }
+
         /// <summary>
         /// Switches the application theme to the specified one.
         /// </summary>
         /// <param name="theme">The name of the theme to activate.</param>
-        public void SwitchTheme(string theme)
+        public void SwitchTheme(string? theme)
         {
-            if (currentTheme == theme) return;
+            if (Settings.CurrentTheme == theme || theme == null) return;
 
-            currentTheme = theme;
             if (Themes.TryGetValue(theme, out var themeUri))
             {
+                Settings.CurrentTheme = theme;
                 UpdateResourceDictionary(themeUri, "Themes/");
             }
         }
@@ -39,10 +87,13 @@ namespace Cryptonly
         /// Sets the localization language for the application.
         /// </summary>
         /// <param name="cultureCode">Culture code to select the localization (for example, "uk-UA" for Ukrainian).</param>
-        public void SetLanguage(string cultureCode)
+        public void SetLanguage(string? cultureCode)
         {
+            if (Settings.CurrentLanguage == cultureCode || cultureCode == null) return;
+
             if (Languages.TryGetValue(cultureCode, out var languageUri))
             {
+                Settings.CurrentLanguage = cultureCode;
                 UpdateResourceDictionary(languageUri, "Resources/Localization/");
             }
         }

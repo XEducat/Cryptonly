@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Resources\cryptoConvertor.ico" />
+    <None Remove="Resources\settings.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +20,7 @@
 
   <ItemGroup>
     <Resource Include="Resources\cryptoConvertor.ico" />
+    <Resource Include="Resources\settings.ico" />
   </ItemGroup>
 
 </Project>
