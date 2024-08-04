@@ -1,5 +1,4 @@
-﻿using Cryptonly.Services;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Cryptonly.ViewModels
 {
@@ -7,8 +6,7 @@ namespace Cryptonly.ViewModels
     {
         private bool _isLightTheme;
         private bool _isDarkTheme;
-        private bool _isEnglishLanguage;
-        private bool _isUkrainianLanguage;
+        private string _selectedLanguage;
 
         public bool IsLightTheme
         {
@@ -40,50 +38,36 @@ namespace Cryptonly.ViewModels
             }
         }
 
-        public bool IsEnglishLanguage
+        public LanguageInfo SelectedLanguage
         {
-            get => _isEnglishLanguage;
+            get => App.GetLanguageByCode(_selectedLanguage);
             set
             {
-                if (SetProperty(ref _isEnglishLanguage, value) && value)
+                if (SetProperty(ref _selectedLanguage, value.Code))
                 {
                     var app = Application.Current as App;
-                    app?.SetLanguage("en-US");
-                    IsUkrainianLanguage = !value;
+                    app?.SetLanguage(value.Code);
                     app?.SaveSettings();
                 }
             }
         }
 
-        public bool IsUkrainianLanguage
-        {
-            get => _isUkrainianLanguage;
-            set
-            {
-                if (SetProperty(ref _isUkrainianLanguage, value) && value)
-                {
-                    var app = Application.Current as App;
-                    app?.SetLanguage("uk-UA");
-                    IsEnglishLanguage = !value;
-                    app?.SaveSettings();
-                }
-            }
-        }
+        public IEnumerable<LanguageInfo> Languages => App.GetLanguages();
 
         public SettingsViewModel()
         {
-            if (App.Settings == null)
+            var currentSettings = App.Settings;
+            if (currentSettings == null)
             {
-                IsLightTheme = true; // Или другая логика определения текущей темы
-                IsEnglishLanguage = true; // Или другая логика определения текущего языка
+                // Default settings
+                IsLightTheme = true;
+                SelectedLanguage = App.GetLanguageByCode("en-US"); 
             }
             else
             {
-                // Установка значений на основе текущих настроек приложения
-                IsLightTheme = App.Settings.CurrentTheme == "Light";
-                IsDarkTheme = App.Settings.CurrentTheme == "Dark";
-                IsEnglishLanguage = App.Settings.CurrentLanguage == "en-US";
-                IsUkrainianLanguage = App.Settings.CurrentLanguage == "uk-UA";
+                IsLightTheme = currentSettings.CurrentTheme == "Light";
+                IsDarkTheme = currentSettings.CurrentTheme == "Dark";
+                SelectedLanguage = App.GetLanguageByCode(currentSettings.CurrentLanguage);
             }
         }
     }

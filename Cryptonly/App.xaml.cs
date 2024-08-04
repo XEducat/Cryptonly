@@ -10,6 +10,12 @@ namespace Cryptonly
     public partial class App : Application
     {
         public static UserSettings Settings { get; private set; } = new UserSettings();
+        private static readonly List<LanguageInfo> Languages = new List<LanguageInfo>
+        {
+            new LanguageInfo("en-US", "English", new Uri("Resources/Localization/Strings.en-US.xaml", UriKind.Relative)),
+            new LanguageInfo("uk-UA", "Українська", new Uri("Resources/Localization/Strings.uk-UA.xaml", UriKind.Relative))
+            // Add more languages here
+        };
 
         private static readonly Dictionary<string, Uri> Themes = new Dictionary<string, Uri>
         {
@@ -17,44 +23,14 @@ namespace Cryptonly
             { "Light", new Uri("Themes/LightTheme.xaml", UriKind.Relative) }
         };
 
-        private static readonly Dictionary<string, Uri> Languages = new Dictionary<string, Uri>
+        public static IReadOnlyList<LanguageInfo> GetLanguages()
         {
-            { "uk-UA", new Uri("Resources/Localization/Strings.uk-UA.xaml", UriKind.Relative) },
-            { "en-US", new Uri("Resources/Localization/Strings.en-US.xaml", UriKind.Relative) }
-        };
-
-        
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
-            LoadSettings();
+            return Languages;
         }
 
-        // Loads user settings from a JSON file and applies them,
-        // sets default settings if the settings does not exist.
-        private void LoadSettings()
+        public static LanguageInfo? GetLanguageByCode(string code)
         {
-            // Formation of the full path to the settings file
-            string basePath = AppDomain.CurrentDomain.BaseDirectory.Replace("bin\\Debug\\net8.0-windows\\", "");
-            string settingsFilePath = Path.Combine(basePath, "UserConfig.json");
-
-            if (File.Exists(settingsFilePath))
-            {
-                var settingsConfig = File.ReadAllText(settingsFilePath);
-                var settings = JsonConvert.DeserializeObject<UserSettings>(settingsConfig);
-
-                if (settings != null)
-                {
-                    SwitchTheme(settings.CurrentTheme);
-                    SetLanguage(settings.CurrentLanguage);
-                    Settings = settings;
-                    return;
-                }
-            }
-
-            // Set default settings
-            SwitchTheme("Light");
-            SetLanguage("en-US");
+            return Languages.FirstOrDefault(lang => lang.Code == code);
         }
 
         /// <summary>
@@ -91,11 +67,45 @@ namespace Cryptonly
         {
             if (Settings.CurrentLanguage == cultureCode || cultureCode == null) return;
 
-            if (Languages.TryGetValue(cultureCode, out var languageUri))
+            var languageInfo = GetLanguageByCode(cultureCode);
+            if (languageInfo != null)
             {
-                Settings.CurrentLanguage = cultureCode;
-                UpdateResourceDictionary(languageUri, "Resources/Localization/");
+                Settings.CurrentLanguage = languageInfo.Code;
+                UpdateResourceDictionary(languageInfo.ResourceUri, "Resources/Localization/");
             }
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            LoadSettings();
+        }
+
+        // Loads user settings from a JSON file and applies them,
+        // sets default settings if the settings does not exist.
+        private void LoadSettings()
+        {
+            // Formation of the full path to the settings file
+            string basePath = AppDomain.CurrentDomain.BaseDirectory.Replace("bin\\Debug\\net8.0-windows\\", "");
+            string settingsFilePath = Path.Combine(basePath, "UserConfig.json");
+
+            if (File.Exists(settingsFilePath))
+            {
+                var settingsConfig = File.ReadAllText(settingsFilePath);
+                var settings = JsonConvert.DeserializeObject<UserSettings>(settingsConfig);
+
+                if (settings != null)
+                {
+                    SwitchTheme(settings.CurrentTheme);
+                    SetLanguage(settings.CurrentLanguage);
+                    Settings = settings;
+                    return;
+                }
+            }
+
+            // Set default settings
+            SwitchTheme("Light");
+            SetLanguage("en-US");
         }
 
         // Updates the resource dictionary, replacing old dictionaries with new ones.
