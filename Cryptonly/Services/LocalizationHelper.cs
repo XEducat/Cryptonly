@@ -2,6 +2,9 @@
 
 namespace Cryptonly.Services
 {
+    /// <summary>
+    /// Provides methods for retrieving localized strings from application resources.
+    /// </summary>
     public static class LocalizationHelper
     {
         /// <summary>

@@ -5,8 +5,11 @@ using System.Net.Http;
 namespace Cryptonly.Services
 {
     public class CoinCapRepository
-    {   
-        public event EventHandler<ErrorEventArgs> ErrorOccurred; // Подія для повідомлення про помилки
+    {
+        /// <summary> 
+        /// Event that is called when errors occur.
+        /// </summary>
+        public event EventHandler<ErrorEventArgs> ErrorOccurred;
 
         private static readonly HttpClient Client = new HttpClient();
 
@@ -15,6 +18,9 @@ namespace Cryptonly.Services
             ErrorOccurred?.Invoke(this, new ErrorEventArgs(methodName, message));
         }
 
+        /// <summary>
+        /// Returns a list of all cryptocurrencies.
+        /// </summary>
         public async Task<CryptoShortList?> GetAllCryptoCurrenciesAsync()
         {
             try
@@ -38,6 +44,9 @@ namespace Cryptonly.Services
             return null;
         }
 
+        /// <summary>
+        /// Searches cryptocurrency by ID.
+        /// </summary>
         public async Task<Crypto?> FindCryptoCurrencyAsync(string id)
         {
             try
@@ -61,6 +70,9 @@ namespace Cryptonly.Services
             return null;
         }
 
+        /// <summary>
+        /// Returns cryptocurrency price history.
+        /// </summary>
         public async Task<DiagramCollection?> GetPriceHistoryAsync(string id, string interval)
         {
             try
@@ -84,6 +96,9 @@ namespace Cryptonly.Services
             return null;
         }
 
+        /// <summary>
+        /// Returns market information about cryptocurrency.
+        /// </summary>
         public async Task<MarketData?> GetMarketDataAsync(string id)
         {
             try
