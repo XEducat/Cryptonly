@@ -9,7 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <!-- Підключення ресурсного словника за замовченням -->
                 <ResourceDictionary Source="Resources/Localization/Strings.uk-UA.xaml"/>
-                <ResourceDictionary Source="Themes/LightTheme.xaml"/>
+                <ResourceDictionary Source="Resources/Themes/LightTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

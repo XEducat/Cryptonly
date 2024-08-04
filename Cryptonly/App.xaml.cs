@@ -19,8 +19,8 @@ namespace Cryptonly
 
         private static readonly Dictionary<string, Uri> Themes = new Dictionary<string, Uri>
         {
-            { "Dark", new Uri("Themes/DarkTheme.xaml", UriKind.Relative) },
-            { "Light", new Uri("Themes/LightTheme.xaml", UriKind.Relative) }
+            { "Dark", new Uri("Resources/Themes/DarkTheme.xaml", UriKind.Relative) },
+            { "Light", new Uri("Resources/Themes/LightTheme.xaml", UriKind.Relative) }
         };
 
         public static IReadOnlyList<LanguageInfo> GetLanguages()
@@ -55,7 +55,7 @@ namespace Cryptonly
             if (Themes.TryGetValue(theme, out var themeUri))
             {
                 Settings.CurrentTheme = theme;
-                UpdateResourceDictionary(themeUri, "Themes/");
+                UpdateResourceDictionary(themeUri, "Resources/Themes/");
             }
         }
 
