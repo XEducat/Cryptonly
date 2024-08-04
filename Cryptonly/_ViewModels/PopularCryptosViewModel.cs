@@ -8,11 +8,11 @@ namespace Cryptonly.ViewModels
     public class PopularCryptosViewModel : BaseViewModel
     {
         private readonly CoinCapRepository _coinCap = new CoinCapRepository();
-        private ObservableCollection<CryptoCurrencyShort> _cryptos;
+        private ObservableCollection<CryptoShort> _cryptos;
         private string _searchText;
         public ICommand SearchCommand { get; }
 
-        public ObservableCollection<CryptoCurrencyShort> Cryptos
+        public ObservableCollection<CryptoShort> Cryptos
         {
             get { return _cryptos; }
             set { SetProperty(ref _cryptos, value); }
@@ -45,7 +45,7 @@ namespace Cryptonly.ViewModels
             var cryptoData = await _coinCap.GetAllCryptoCurrenciesAsync();
 
             if (cryptoData != null)
-                Cryptos = new ObservableCollection<CryptoCurrencyShort>(cryptoData.Data);
+                Cryptos = new ObservableCollection<CryptoShort>(cryptoData.Data);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Cryptonly.ViewModels
             else
             {
                 var filtered = _cryptos.Where(c => c.DisplayName.ToLower().Contains(SearchText.ToLower()));
-                Cryptos = new ObservableCollection<CryptoCurrencyShort>(filtered);
+                Cryptos = new ObservableCollection<CryptoShort>(filtered);
             }
         }
     }

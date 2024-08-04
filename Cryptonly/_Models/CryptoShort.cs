@@ -6,8 +6,10 @@ namespace Cryptonly.Data
     /// Small model for currency,
     /// created for optimization
     /// </summary>
-    public class CryptoCurrencyShort
+    public class CryptoShort
     {
+        private const int DECIMAL_LIMIT = 6;
+
         [JsonProperty("id")]
         public string Id { get; set; }
 
@@ -26,7 +28,7 @@ namespace Cryptonly.Data
         public decimal PriceUsd
         {
             get => priceUsd;
-            set => priceUsd = Math.Round(value, 5);
+            set => priceUsd = Math.Round(value, DECIMAL_LIMIT);
         }
 
         private double volumeUsd;
@@ -35,7 +37,7 @@ namespace Cryptonly.Data
         public double VolumeUsd
         {
             get => volumeUsd;
-            set => volumeUsd = Math.Round(value, 5);
+            set => volumeUsd = Math.Round(value, DECIMAL_LIMIT);
         }
 
         public string DisplayName => $"{Name} ({Symbol})";

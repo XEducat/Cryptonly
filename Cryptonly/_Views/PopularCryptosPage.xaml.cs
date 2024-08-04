@@ -15,7 +15,7 @@ namespace Cryptonly
 
         private void CryptoListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (((ListView)sender).SelectedItem is CryptoCurrencyShort selectedCrypto)
+            if (((ListView)sender).SelectedItem is CryptoShort selectedCrypto)
             {
                 var detailPage = new CryptoDetailPage(selectedCrypto);
                 NavigationService.Navigate(detailPage);

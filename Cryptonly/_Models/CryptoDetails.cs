@@ -2,16 +2,7 @@
 
 namespace Cryptonly.Data
 {
-    /// <summary>
-    /// Full model for currency
-    /// </summary>
-    public class CryptoCurrency
-    {
-        public Data Data { get; set; }
-        public long Timestamp { get; set; }
-    }
-
-    public class Data
+    public class CryptoDetails
     {
         private const int DECIMAL_LIMIT = 6;
 

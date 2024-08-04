@@ -15,12 +15,12 @@ namespace Cryptonly.Services
             ErrorOccurred?.Invoke(this, new ErrorEventArgs(methodName, message));
         }
 
-        public async Task<CryptoInfo?> GetAllCryptoCurrenciesAsync()
+        public async Task<CryptoShortList?> GetAllCryptoCurrenciesAsync()
         {
             try
             {
                 var response = await Client.GetStringAsync("https://api.coincap.io/v2/assets");
-                return JsonConvert.DeserializeObject<CryptoInfo>(response);
+                return JsonConvert.DeserializeObject<CryptoShortList>(response);
             }
             catch (HttpRequestException httpEx)
             {
@@ -38,12 +38,12 @@ namespace Cryptonly.Services
             return null;
         }
 
-        public async Task<CryptoCurrency?> FindCryptoCurrencyAsync(string id)
+        public async Task<Crypto?> FindCryptoCurrencyAsync(string id)
         {
             try
             {
                 var response = await Client.GetStringAsync($"https://api.coincap.io/v2/assets/{id}");
-                return JsonConvert.DeserializeObject<CryptoCurrency>(response);
+                return JsonConvert.DeserializeObject<Crypto>(response);
             }
             catch (HttpRequestException httpEx)
             {
@@ -61,12 +61,12 @@ namespace Cryptonly.Services
             return null;
         }
 
-        public async Task<AnalyticData?> GetPriceHistoryAsync(string id, string interval)
+        public async Task<DiagramCollection?> GetPriceHistoryAsync(string id, string interval)
         {
             try
             {
                 var response = await Client.GetStringAsync($"https://api.coincap.io/v2/assets/{id}/history?interval={interval}");
-                return JsonConvert.DeserializeObject<AnalyticData>(response);
+                return JsonConvert.DeserializeObject<DiagramCollection>(response);
             }
             catch (HttpRequestException httpEx)
             {
@@ -106,17 +106,5 @@ namespace Cryptonly.Services
 
             return null;
         }
-    }
-}
-
-public class ErrorEventArgs : EventArgs
-{
-    public string MethodName { get; }
-    public string Message { get; }
-
-    public ErrorEventArgs(string methodName, string message)
-    {
-        MethodName = methodName;
-        Message = message;
     }
 }

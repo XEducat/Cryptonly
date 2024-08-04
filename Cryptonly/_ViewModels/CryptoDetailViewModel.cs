@@ -13,7 +13,7 @@ namespace Cryptonly.ViewModels
     public class CryptoDetailViewModel : BaseViewModel
     {
         private readonly CoinCapRepository _coinCap = new CoinCapRepository();
-        private CryptoCurrencyShort _selectedCrypto;
+        private CryptoShort _selectedCrypto;
 
         private string _name;
         private decimal _priceUsd;
@@ -89,7 +89,7 @@ namespace Cryptonly.ViewModels
             }
         }
 
-        public CryptoDetailViewModel(CryptoCurrencyShort selectedCrypto)
+        public CryptoDetailViewModel(CryptoShort selectedCrypto)
         {
             _selectedCrypto = selectedCrypto;
             SellMarkets = new ObservableCollection<string>();

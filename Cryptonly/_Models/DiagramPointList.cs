@@ -1,8 +1,8 @@
 ﻿namespace Cryptonly
 {
     // Model for presenting the given currency graph
-    public class AnalyticData
+    public class DiagramCollection
     {
-        public List<HistoricalDataItem> Data { get; set; }
+        public List<DiagramPoint> Data { get; set; }
     }
 }

@@ -9,12 +9,12 @@ namespace Cryptonly.ViewModels
 {
     public class CryptoConverterViewModel : BaseViewModel
     {
-        public ObservableCollection<CryptoCurrencyShort> Cryptos { get; set; }
+        public ObservableCollection<CryptoShort> Cryptos { get; set; }
         public ICommand ConvertCommand { get; }
 
         private readonly CoinCapRepository _repository;
-        private CryptoCurrencyShort _selectedFromCrypto;
-        private CryptoCurrencyShort _selectedToCrypto;
+        private CryptoShort _selectedFromCrypto;
+        private CryptoShort _selectedToCrypto;
         private decimal _amount;
         private string _result;
 
@@ -23,12 +23,12 @@ namespace Cryptonly.ViewModels
             get => _amount;
             set { SetProperty(ref _amount, value); }
         }
-        public CryptoCurrencyShort SelectedFromCrypto
+        public CryptoShort SelectedFromCrypto
         {
             get => _selectedFromCrypto;
             set { SetProperty(ref _selectedFromCrypto, value); }
         }
-        public CryptoCurrencyShort SelectedToCrypto
+        public CryptoShort SelectedToCrypto
         {
             get => _selectedToCrypto;
             set { SetProperty(ref _selectedToCrypto, value); }
@@ -43,7 +43,7 @@ namespace Cryptonly.ViewModels
         public CryptoConverterViewModel()
         {
             _repository = new CoinCapRepository();
-            Cryptos = new ObservableCollection<CryptoCurrencyShort>();
+            Cryptos = new ObservableCollection<CryptoShort>();
             ConvertCommand = new RelayCommand(async () => await ConvertCrypto());
             LoadCryptos();
         }
@@ -54,7 +54,7 @@ namespace Cryptonly.ViewModels
             using (HttpClient client = new HttpClient())
             {
                 var response = await client.GetStringAsync("https://api.coincap.io/v2/assets");
-                var cryptoData = JsonConvert.DeserializeObject<CryptoInfo>(response);
+                var cryptoData = JsonConvert.DeserializeObject<CryptoShortList>(response);
 
                 Cryptos.Clear();
                 foreach (var crypto in cryptoData.Data)

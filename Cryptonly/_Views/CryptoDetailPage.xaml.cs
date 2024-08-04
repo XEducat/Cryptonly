@@ -6,7 +6,7 @@ namespace Cryptonly
 {
     public partial class CryptoDetailPage : Page
     {
-        public CryptoDetailPage(CryptoCurrencyShort selectedCrypto)
+        public CryptoDetailPage(CryptoShort selectedCrypto)
         {
             InitializeComponent();
             DataContext = new CryptoDetailViewModel(selectedCrypto);
