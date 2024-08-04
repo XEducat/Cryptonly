@@ -23,18 +23,18 @@
         <Border Background="{DynamicResource NavBarBackgroundBrush}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal" Height="60" VerticalAlignment="Center" HorizontalAlignment="Right">
                 <!-- Кнопка для переходу в Конвертер криптовалют -->
-                <Button Click="CryptoConverterButton_Click" Margin="10" Style="{DynamicResource RoundedButtonStyle}">
+                <Button Margin="10" Style="{DynamicResource RoundedButtonStyle}" Command="{Binding NavigateToCryptoConverterCommand}">
                     <Image Source="/Resources/cryptoConvertor.ico" Width="32" Height="32" Margin="5,0,5,0"/>
                 </Button>
 
-                <Button Click="SettingsButton_Click" Margin="10" Style="{DynamicResource RoundedButtonStyle}">
+                <Button Margin="10" Style="{DynamicResource RoundedButtonStyle}" Command="{Binding NavigateToSettingsCommand}">
                     <Image Source="/Resources/settings.ico" Width="32" Height="32" Margin="5,0,5,0"/>
                 </Button>
             </StackPanel>
         </Border>
 
         <!-- Кнопка головного меню (ліва частина NavBar) -->
-        <Button Content="Cryptonly" Click="CryptonlyButton_Click" Style="{DynamicResource NavButton}" Height="60" Width="150" Grid.Row="0" Grid.Column="0"/>
+        <Button Content="Cryptonly" Style="{DynamicResource NavButton}" Command="{Binding NavigateToPopularCryptosCommand}" Height="60" Width="150" Grid.Row="0" Grid.Column="0"/>
 
         <!-- Основний контент -->
         <Grid Background="{DynamicResource BackgroundBrush}" Grid.Row="1" Grid.ColumnSpan="2">
