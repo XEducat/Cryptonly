@@ -4,9 +4,26 @@ namespace Cryptonly.ViewModels
 {
     public class SettingsViewModel : BaseViewModel
     {
+        // Retrieves the available languages from the application settings.
+        public IEnumerable<LanguageInfo> Languages => App.GetLanguages();
+
         private bool _isLightTheme;
         private bool _isDarkTheme;
         private string _selectedLanguage;
+
+        public LanguageInfo SelectedLanguage
+        {
+            get => App.GetLanguageByCode(_selectedLanguage);
+            set
+            {
+                if (SetProperty(ref _selectedLanguage, value.Code))
+                {
+                    var app = Application.Current as App;
+                    app?.SetLanguage(value.Code);
+                    app?.SaveSettings();
+                }
+            }
+        }
 
         public bool IsLightTheme
         {
@@ -38,22 +55,9 @@ namespace Cryptonly.ViewModels
             }
         }
 
-        public LanguageInfo SelectedLanguage
-        {
-            get => App.GetLanguageByCode(_selectedLanguage);
-            set
-            {
-                if (SetProperty(ref _selectedLanguage, value.Code))
-                {
-                    var app = Application.Current as App;
-                    app?.SetLanguage(value.Code);
-                    app?.SaveSettings();
-                }
-            }
-        }
-
-        public IEnumerable<LanguageInfo> Languages => App.GetLanguages();
-
+        /// <summary>
+        /// Initializes the settings view model with the current application settings or default values.
+        /// </summary>
         public SettingsViewModel()
         {
             var currentSettings = App.Settings;

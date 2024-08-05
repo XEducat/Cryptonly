@@ -37,9 +37,7 @@ namespace Cryptonly.ViewModels
             LoadCryptos();
         }
 
-        /// <summary>
-        /// Loading info about all cryptocurrencies
-        /// </summary>
+        // Loading info about all cryptocurrencies
         private async Task LoadCryptos()
         {
             var cryptoData = await _coinCap.GetAllCryptoCurrenciesAsync();
@@ -48,9 +46,7 @@ namespace Cryptonly.ViewModels
                 Cryptos = new ObservableCollection<CryptoShort>(cryptoData.Data);
         }
 
-        /// <summary>
-        /// Filters the cryptocurrency list based on the search text. Loads all cryptocurrencies if the search text is empty.
-        /// </summary>
+        // Filters the cryptocurrency list based on the search text. Loads all cryptocurrencies if the search text is empty.
         private async Task SearchCryptos()
         {
             if (string.IsNullOrWhiteSpace(SearchText))

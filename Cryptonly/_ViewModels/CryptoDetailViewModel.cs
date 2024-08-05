@@ -13,17 +13,17 @@ namespace Cryptonly.ViewModels
     public class CryptoDetailViewModel : BaseViewModel
     {
         private readonly CoinCapRepository _coinCap = new CoinCapRepository();
+        
+        private ObservableCollection<string> _sellMarkets;
+        private ObservableCollection<string> _buyMarkets;
         private CryptoShort _selectedCrypto;
-
+        private PlotModel _priceChart;
+        private ICommand _navigateCommand;
         private string _name;
         private decimal _priceUsd;
         private double _volumeUsd24Hr;
         private double _marketCapUsd;
-        private PlotModel _priceChart;
-        private ObservableCollection<string> _sellMarkets;
-        private ObservableCollection<string> _buyMarkets;
         private string _selectedInterval;
-        private ICommand _navigateCommand;
 
         public string Name
         {
@@ -101,6 +101,7 @@ namespace Cryptonly.ViewModels
             LoadMarketInfoAsync();
         }
 
+        // Loads detailed information about the selected cryptocurrency.
         private async Task LoadCryptoInfoAsync()
         {
             var detailedData1 = await _coinCap.FindCryptoCurrencyAsync(_selectedCrypto.Id);
@@ -114,6 +115,8 @@ namespace Cryptonly.ViewModels
             }
         }
 
+        // Loads and updates the price chart for the selected cryptocurrency
+        // based on the specified interval.
         private async Task LoadPriceDiagramAsync(string interval)
         {
             var historicalData = await _coinCap.GetPriceHistoryAsync(_selectedCrypto.Id, interval);
@@ -160,6 +163,8 @@ namespace Cryptonly.ViewModels
             }
         }
 
+        // Loads and updates market information for the selected cryptocurrency,
+        // including sell and buy markets.
         private async Task LoadMarketInfoAsync()
         {
             var marketsData = await _coinCap.GetMarketDataAsync(_selectedCrypto.Id);
@@ -200,6 +205,7 @@ namespace Cryptonly.ViewModels
             }
         }
 
+        // Executes the navigation command to open the cryptocurrency's explorer URL.
         private void ExecuteNavigateCommand(object parameter)
         {
             if (!string.IsNullOrEmpty(_selectedCrypto.Explorer))
@@ -223,6 +229,7 @@ namespace Cryptonly.ViewModels
             }
         }
 
+        // Determines whether the navigation command can be executed.
         private bool CanExecuteNavigateCommand(object parameter)
         {
             return !string.IsNullOrEmpty(_selectedCrypto.Explorer);

@@ -48,7 +48,7 @@ namespace Cryptonly.ViewModels
             LoadCryptos();
         }
 
-
+        // Loads the list of cryptocurrencies from the API and populates the Cryptos collection.
         private async void LoadCryptos()
         {
             using (HttpClient client = new HttpClient())
@@ -64,6 +64,7 @@ namespace Cryptonly.ViewModels
             }
         }
 
+        // Converts the amount from one cryptocurrency to another and updates the Result property.
         private async Task ConvertCrypto()
         {
             if (SelectedFromCrypto == null)
@@ -92,6 +93,7 @@ namespace Cryptonly.ViewModels
             }
         }
 
+        // Retrieves the price of a cryptocurrency in USD from the repository.
         private async Task<decimal> GetCryptoPriceInUsd(string cryptoId)
         {
             var response = await _repository.FindCryptoCurrencyAsync(cryptoId);
