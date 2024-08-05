@@ -99,12 +99,12 @@ namespace Cryptonly.Services
         /// <summary>
         /// Returns market information about cryptocurrency.
         /// </summary>
-        public async Task<MarketData?> GetMarketDataAsync(string id)
+        public async Task<MarketList?> GetMarketDataAsync(string id)
         {
             try
             {
                 var response = await Client.GetStringAsync($"https://api.coincap.io/v2/assets/{id}/markets");
-                return JsonConvert.DeserializeObject<MarketData>(response);
+                return JsonConvert.DeserializeObject<MarketList>(response);
             }
             catch (HttpRequestException httpEx)
             {

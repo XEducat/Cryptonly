@@ -1,8 +1,11 @@
 ﻿
 namespace Cryptonly.Data
 {
-    public class MarketData
+    /// <summary>
+    /// Model represents a collection of market data.
+    /// </summary>
+    public class MarketList
     {
-        public List<Market> Data { get; set; }  // Додайте це поле для ринків
+        public List<Market> Data { get; set; }
     }
 }

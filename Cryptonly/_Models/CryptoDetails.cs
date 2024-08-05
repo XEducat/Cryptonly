@@ -2,6 +2,9 @@
 
 namespace Cryptonly.Data
 {
+    /// <summary>
+    /// Sub-model represents detailed information about a cryptocurrency, part of model Crypto
+    /// </summary>
     public class CryptoDetails
     {
         private const int DECIMAL_LIMIT = 6;
