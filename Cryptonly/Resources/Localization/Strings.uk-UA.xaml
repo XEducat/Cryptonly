@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-    <sys:String x:Key="SettingsHeader">Настройки</sys:String>
+    <sys:String x:Key="SettingsHeader">Налаштування</sys:String>
     <sys:String x:Key="ThemeHeader">Тема:</sys:String>
     <sys:String x:Key="LightTheme">Світла</sys:String>
     <sys:String x:Key="DarkTheme">Темна</sys:String>

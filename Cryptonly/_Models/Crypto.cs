@@ -1,7 +1,7 @@
 ﻿namespace Cryptonly.Data
 {
     /// <summary>
-    /// Model for full data of cryptocurrency
+    /// Model for data of cryptocurrency
     /// </summary>
     public class Crypto
     {
