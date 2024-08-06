@@ -13,7 +13,8 @@ namespace Cryptonly
         private static readonly List<LanguageInfo> Languages = new List<LanguageInfo>
         {
             new LanguageInfo("en-US", "English", new Uri("Resources/Localization/Strings.en-US.xaml", UriKind.Relative)),
-            new LanguageInfo("uk-UA", "Українська", new Uri("Resources/Localization/Strings.uk-UA.xaml", UriKind.Relative))
+            new LanguageInfo("uk-UA", "Українська", new Uri("Resources/Localization/Strings.uk-UA.xaml", UriKind.Relative)),
+            new LanguageInfo("pl-PL", "Polski", new Uri("Resources/Localization/Strings.pl-PL.xaml", UriKind.Relative)),
             // Add more languages here
         };
 

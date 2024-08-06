@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="SettingsHeader">Ustawienia</sys:String>
+    <sys:String x:Key="ThemeHeader">Motyw:</sys:String>
+    <sys:String x:Key="LightTheme">Jasny</sys:String>
+    <sys:String x:Key="DarkTheme">Ciemny</sys:String>
+    <sys:String x:Key="LanguageHeader">Język:</sys:String>
+    <sys:String x:Key="Language_Ukrainian">Ukraiński</sys:String>
+    <sys:String x:Key="Language_English">Angielski</sys:String>
+    <sys:String x:Key="CurrencyText">Waluta</sys:String>
+    <sys:String x:Key="PriceText">Cena</sys:String>
+    <sys:String x:Key= "Volume24hText">Wolumen (24 godziny)</sys:String>
+    <sys:String x:Key="GoToPageButtonText">Przejdź do</sys:String>
+    <sys:String x:Key="MarketCapitalizationText">Kapitalizacja rynkowa</sys:String>
+    <sys:String x:Key="SalesText">Sprzedaż</sys:String>
+    <sys:String x:Key="PurchaseText">Zakup</sys:String>
+    <sys:String x:Key="Interval5Days">5 dni</sys:String>
+    <sys:String x:Key="Interval1Week">1 tydzień</sys:String>
+    <sys:String x:Key="Interval2Weeks">2 tygodnie</sys:String>
+    <sys:String x:Key="Interval1Month">1 miesiąc</sys:String>
+    <sys:String x:Key="Interval2Months">2 miesiące</sys:String>
+    <sys:String x:Key="Interval1Year">1 rok</sys:String>
+    <sys:String x:Key="PriceDiagramTitle">Analiza cen</sys:String>
+    <sys:String x:Key="DateAxisTitle ">Data</sys:String>
+    <sys:String x:Key="PriceAxisTitle">Cena (USD)</sys:String>
+    <sys:String x:Key="ConverterTitle">Konwerter kryptowalut</sys:String >
+    <sys:String x:Key="InTitle">w</sys:String>
+    <sys:String x:Key="ConvertButtonTitle">Konwertuj</sys:String>
+    <sys:String x:Key="NoFromCryptoSelected">Nie wybrano waluty do konwersji</sys:String>
+    <sys:String x:Key="NoToCryptoSelected">Nie wybrano waluty do konwersji</sys:String>
+    <sys:String x:Key= "EnterAmount">Wprowadź kwotę waluty</sys:String>
+</ResourceDictionary>
